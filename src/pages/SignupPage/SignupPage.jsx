@@ -1,6 +1,6 @@
 import React, {useState, useRef, useEffect } from 'react';
 import './SignupPage.css';
-import ErrorMessage from '../../components/ErrorMessage/ErrorMessage'
+import ErrorMessage from '../../components/ErrorMessge/ErrorMessage'
 import { useForm } from '../../hooks/useForm';
 import userService from '../../utils/userService';
 

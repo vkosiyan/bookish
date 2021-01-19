@@ -6,7 +6,7 @@ const nyTimesUrl = `https://api.nytimes.com/svc/books/v3/lists.json?list-name=ha
 
   return (
     <div>
-        Test
+        {nyTimesUrl}
 
     </div>   
 

@@ -8,7 +8,6 @@ import userService from '../../utils/userService'
 import Home from '../Home/Home';
 
 
-
 function App() {
 
   const [user, setUser] = useState(userService.getUser()) // getUser decodes our JWT token, into a javascript object
@@ -23,7 +22,6 @@ function App() {
     userService.logout();
     setUser({user: null})
   }
-  
 
   return (
     <div className="App">

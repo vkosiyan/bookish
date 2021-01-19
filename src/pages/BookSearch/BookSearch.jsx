@@ -7,11 +7,13 @@ function BookSearch() {
     const [result, setResult] = useState([]);  
     const [apiKey, setApiKey] = useState("AIzaSyB2MR9Aytx1NBrLhcns0k2UAd0RfsemqlE")  
   
-    function handleChange(event) {  
-        const book = event.target.value;  
+    function handleChange(event) { 
+        const book = event.target.value; 
+        console.log(book) 
         setBook(book);  
     }  
     function handleSubmit(event) {  
+        console.log(event)
         event.preventDefault();  
         axios.get("https://www.googleapis.com/books/v1/volumes?q=" + book + "&key=" + apiKey + "&maxResults=40")  
             .then(data => {  
@@ -24,7 +26,7 @@ function BookSearch() {
             <div className="card-header main-search">  
                 <div className="row">  
                     <div className="col-12 col-md-3 col-xl-3">  
-                        <input onChange={handleChange} className="AutoFocus form-control" placeholder="Type something..." type="text" />  
+                        <input onChange={handleChange} className="AutoFocus form-control" placeholder="What are you looking for?" type="text" />  
                     </div>  
                     <div className="ml-auto">  
                         <input type="submit" value="Search" className="btn btn-primary search-btn" />  
@@ -39,7 +41,7 @@ function BookSearch() {
   
                                 <Card.Img variant="top" src={book.volumeInfo.imageLinks !== undefined ? book.volumeInfo.imageLinks.thumbnail : ''} alt={book.title} />  
                                 <Card.Body>  
-                                    <h5 className="card-title">Card title</h5>  
+                                    <h5 className="card-title">{book.volumeInfo.title}</h5>  
                                     <a className="btn btn-primary">Know more</a>  
                                 </Card.Body>  
                             </Card>  

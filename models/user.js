@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const { post } = require('../routes/api/users');
 
 const SALT_ROUNDS = 6;
 
@@ -8,8 +9,7 @@ const userSchema = new mongoose.Schema({
   email: {type: String, required: true, lowercase: true, unique: true},
   password: String,
   bio: String,
-  photoURL: String
-
+  photoUrl: String  // string from aws!
 }, {
   timestamps: true
 });
@@ -21,14 +21,16 @@ userSchema.set('toJSON', {
     return ret;
   }
 });
+/// in controller
 
-// Need this for .populate
+// this is if you populate the user
 userSchema.set('toObject', {
   transform: (doc, ret, opt) => {
    delete ret.password;
    return ret;
   }
-})
+});
+
 
 // DO NOT DEFINE instance methods with arrow functions, 
 // they prevent the binding of this

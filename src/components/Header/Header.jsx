@@ -30,7 +30,7 @@ export default function PageHeader({user, handleLogout}){
             
             <Header as='h2' floated='right'>
                 <Link to="/"><Icon name="home"></Icon></Link>
-                {user.email}
+                {user.username}
                 <Link to='' onClick={handleLogout}>Logout</Link>
             </Header>
             <Header as='h2' floated='left'>

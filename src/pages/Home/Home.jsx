@@ -7,7 +7,7 @@ import BookSearch from '../BookSearch/BookSearch';
 
 
 
-export default function Home({user, handleLogout}){  
+export default function Home({user, handleLogout, setResults, results, book, setBook}){  
   
     return (
         
@@ -17,7 +17,7 @@ export default function Home({user, handleLogout}){
           
 
             <PageHeader user={user} handleLogout={handleLogout}/>
-            <BookSearch />
+            <BookSearch setResults={setResults} results={results} book={book} setBook={setBook}/>
 
           </Grid.Column>
         </Grid.Row>

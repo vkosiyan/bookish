@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import axios from 'axios';  
 import { Card } from 'react-bootstrap';  
 import { Grid, Image, Rating, Divider } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
-function BookSearch() {  
-    const [book, setBook] = useState("");  
-    const [result, setResult] = useState([]);  
-    const [apiKey, setApiKey] = useState("AIzaSyB2MR9Aytx1NBrLhcns0k2UAd0RfsemqlE")  
-  
+function BookSearch({setResults, results, setBook, book}) {  
+
+    
+
+    const apiKey = 'AIzaSyB2MR9Aytx1NBrLhcns0k2UAd0RfsemqlE'
+
     function handleChange(event) { 
         const book = event.target.value; 
         console.log(book) 
@@ -18,9 +20,13 @@ function BookSearch() {
         event.preventDefault();  
         axios.get("https://www.googleapis.com/books/v1/volumes?q=" + book + "&key=" + apiKey + "&maxResults=40")  
             .then(data => {  
-                console.log(data.data.items);  
-                setResult(data.data.items);  
-            })  
+                console.log('DATA ITEMS', data.data.items);  
+                setResults(data.data.items);  
+                
+            }) 
+            .then(d => {
+                
+            }) 
     }  
     return (  
         <form onSubmit={handleSubmit}>  
@@ -36,10 +42,10 @@ function BookSearch() {
             </div>  
             <div className="card">  
                 <div className="row">  
-                    {result.map(book => (  
+                    {results.map((book, idx) => (  
 
-
-                        <Grid celled='internally'>
+                        <Grid celled='internally' key={idx}>
+                            {console.log('SINGULAR BOOK', book)}
                             <Grid.Row>
                             <Grid.Column width={3}>
                                 <Image src={book.volumeInfo.imageLinks !== undefined ? book.volumeInfo.imageLinks.thumbnail : ''} alt={book.volumeInfo.title} />
@@ -52,7 +58,7 @@ function BookSearch() {
                             
                             
 
-                            <a className="btn btn-primary">Know more</a>  
+                            <Link to={"/book/" + book.id}>{book.volumeInfo.title}{book.id}</Link>
                             </Grid.Column>
                             </Grid.Row>
                             <Divider section />
@@ -68,4 +74,6 @@ function BookSearch() {
 }  
   
 export default BookSearch  
+
+
 

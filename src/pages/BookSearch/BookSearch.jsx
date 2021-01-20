@@ -1,6 +1,7 @@
 import React, { useState } from "react";  
 import axios from 'axios';  
 import { Card } from 'react-bootstrap';  
+import { Grid, Image, Rating, Divider } from 'semantic-ui-react'
 
 function BookSearch() {  
     const [book, setBook] = useState("");  
@@ -26,26 +27,38 @@ function BookSearch() {
             <div className="card-header main-search">  
                 <div className="row">  
                     <div className="col-12 col-md-3 col-xl-3">  
-                        <input onChange={handleChange} className="AutoFocus form-control" placeholder="What are you looking for?" type="text" />  
+                        <input onChange={handleChange} className="AutoFocus form-control" placeholder="Search books" type="text" />  
                     </div>  
                     <div className="ml-auto">  
                         <input type="submit" value="Search" className="btn btn-primary search-btn" />  
                     </div>  
                 </div>  
             </div>  
-            <div className="container">  
+            <div className="card">  
                 <div className="row">  
                     {result.map(book => (  
-                        <div className="col-sm-2">  
-                            <Card style={{ 'marginTop': '10px' }}>  
-  
-                                <Card.Img variant="top" src={book.volumeInfo.imageLinks !== undefined ? book.volumeInfo.imageLinks.thumbnail : ''} alt={book.title} />  
-                                <Card.Body>  
-                                    <h5 className="card-title">{book.volumeInfo.title}</h5>  
-                                    <a className="btn btn-primary">Know more</a>  
-                                </Card.Body>  
-                            </Card>  
-                        </div>  
+
+
+                        <Grid celled='internally'>
+                            <Grid.Row>
+                            <Grid.Column width={3}>
+                                <Image src={book.volumeInfo.imageLinks !== undefined ? book.volumeInfo.imageLinks.thumbnail : ''} alt={book.volumeInfo.title} />
+                            </Grid.Column>
+                            <Grid.Column width={10}>
+                            <h3>{book.volumeInfo.title}</h3>
+                            <h4>Authors: {book.volumeInfo.authors}</h4> 
+                            <h4>Avg. Rating: <Rating maxRating={5} defaultRating={book.volumeInfo.averageRating ? book.volumeInfo.averageRating : 0} icon='star' /></h4>
+                            <p max="150">{book.volumeInfo.description}...</p>
+                            
+                            
+
+                            <a className="btn btn-primary">Know more</a>  
+                            </Grid.Column>
+                            </Grid.Row>
+                            <Divider section />
+                        </Grid>
+                        
+                     
                     ))}  
                 </div>  
             </div>  
@@ -55,3 +68,4 @@ function BookSearch() {
 }  
   
 export default BookSearch  
+

@@ -58,7 +58,7 @@ function BookSearch({setResults, results, setBook, book}) {
                             
                             
 
-                            <Link to={"/book/" + book.id}>{book.volumeInfo.title}{book.id}</Link>
+                            <Link to={"/books/" + book.id}>{book.volumeInfo.title}{book.id}</Link>
                             </Grid.Column>
                             </Grid.Row>
                             <Divider section />

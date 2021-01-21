@@ -50,8 +50,8 @@ function Book(props){
 
     return (
       <div>
-    <PageHeader user={props.user} handleLogout={props.handleLogout} />
-
+    <PageHeader user={props.user} handleLogout={props.handleLogout} setResults={props.setResults} results={props.results} searchText={props.searchText} setSearchText={props.setSearchText} />
+     
     <Grid celled>
     <Grid.Row>
 
@@ -67,6 +67,7 @@ function Book(props){
       </Grid.Column>
     </Grid.Row>
     </Grid>
+    {/* <BookSearch setResults={props.setResults} results={props.results} searchText={props.searchText} setSearchText={props.setSearchText}/> */}
     <PageFooter/>
       </div>
     )

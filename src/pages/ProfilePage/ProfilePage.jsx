@@ -6,10 +6,12 @@ import PostFeed from '../../components/PostFeed/PostFeed';
 import PageHeader from '../../components/Header/Header';
 import * as likesAPI from '../../utils/likesService';
 import { useLocation } from 'react-router-dom';
+import PageFooter from '../../components/Footer/Footer';
+import BookSearch from '../BookSearch/BookSearch';
 
 
 
-export default function ProfilePage({ user, handleLogout}) {
+export default function ProfilePage({ user, handleLogout, setResults, results, searchText, setSearchText}) {
 
     const [posts, setPosts] = useState([])
     const [profileUser, setProfileUser] = useState({})
@@ -22,7 +24,7 @@ export default function ProfilePage({ user, handleLogout}) {
     async function getProfile() {
 
         try {
-
+            console.log(user)
             const username = location.pathname.substring(1)
             // location.pathname returns /jimbo so we need to cut off the / using the js method substring
             // This gets the username from the url! 
@@ -32,6 +34,7 @@ export default function ProfilePage({ user, handleLogout}) {
             setLoading(() => false)
             setPosts(() => [...data.posts])
             setProfileUser(() => data.user)
+            console.log('DATA', data)
         } catch (err) {
             console.log(err)
             setError(err)
@@ -64,27 +67,15 @@ export default function ProfilePage({ user, handleLogout}) {
 
     }, [])
 
-
-
     return (
 
         <>
         <Container text style={{ marginTop: '7em' }}>
-            { loading ?
-                <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle' >
-                
-                        <Grid.Column style={{ maxWidth: 450}}>
-                            
-                                <Loader size='large' active>Loading</Loader>
-                         
-                        </Grid.Column>
-                 
-                </Grid>
-                :
+            
                 <Grid>
                     <Grid.Row>
                         <Grid.Column>
-                            <PageHeader user={user} handleLogout={handleLogout} />
+                            <PageHeader user={user} handleLogout={handleLogout} setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText}/>
 
                         </Grid.Column>
                     </Grid.Row>
@@ -94,13 +85,19 @@ export default function ProfilePage({ user, handleLogout}) {
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row centered>
+                    { results ?            
+                         <BookSearch setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText}/>
+                        :
                         <Grid.Column style={{ maxWidth: 750 }}>
                             <PostFeed isProfile={true} posts={posts} numPhotosCol={3} addLike={addLike} removeLike={removeLike} user={user} />
                         </Grid.Column>
-                    </Grid.Row>
+                        }
+                    </Grid.Row> 
+                    
                 </Grid>
             
-            }
+            
+            <PageFooter/>
             </Container>
         </>
     )

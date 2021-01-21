@@ -17,6 +17,7 @@ import {
   Visibility
 } from 'semantic-ui-react'
 import BookSearch from '../../pages/BookSearch/BookSearch';
+import SearchBar from '../../pages/SearchBar/SearchBar';
 
 
 const fixedMenuStyle = {
@@ -26,7 +27,7 @@ const fixedMenuStyle = {
 }
 
 
-export default function PageHeader({user, handleLogout, setResults, results, book, setBook}){
+export default function PageHeader({user, handleLogout, setResults, results, setSearchText, searchText}){
 
     return (
         <div>
@@ -36,6 +37,7 @@ export default function PageHeader({user, handleLogout, setResults, results, boo
               <Menu.Item as='a'>Blog</Menu.Item>
               <Menu.Item as='a'>Articles</Menu.Item>
               
+              <SearchBar setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText}/>
 
               <Menu.Menu position='right'>
               <Link to={`/${user.username}`}><Image src={user.photoUrl ? user.photoUrl : "https://react.semantic-ui.com/images/wireframe/square-image.png"} avatar></Image> </Link> 

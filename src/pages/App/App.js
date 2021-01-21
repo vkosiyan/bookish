@@ -7,6 +7,9 @@ import ProfilePage from '../ProfilePage/ProfilePage'
 import userService from '../../utils/userService'
 import Home from '../Home/Home';
 import BookInfo from '../BookInfo/BookInfo';
+import SearchResults from '../SearchResults/SearchResults';
+import SearchBar from '../SearchBar/SearchBar';
+
 function App() {
   function handleSignUpOrLogin(){
     setUser(userService.getUser()) // getting the user from localstorage decoding the jwt
@@ -38,14 +41,19 @@ function App() {
                 <Route exact path="/">
                     <Home user={user} handleLogout={handleLogout} setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText}/>
                 </Route>
-                
-                <Route exact path="/:username">
-                  <ProfilePage user={user} handleLogout={handleLogout}/>
+
+                <Route exact path="/search">
+                    <SearchResults user={user} handleLogout={handleLogout} setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText}/>
                 </Route>
+
+                <Route exact path="/:username">
+                  <ProfilePage user={user} handleLogout={handleLogout} setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText}/>
+                </Route>
+            
                 
                 <Route path="/books/:bookid"
             render={(routerProps) => (
-              <BookInfo {...routerProps} user={user} handleLogout={handleLogout} searchText={searchText} setSearchText={setSearchText} user={user} currentBook={currentBook} setCurrentBook={setCurrentBook}/>
+              <BookInfo {...routerProps} user={user} handleLogout={handleLogout} searchText={searchText} setSearchText={setSearchText} user={user} currentBook={currentBook} setCurrentBook={setCurrentBook} setResults={setResults} results={results}/>
             )}
           />
           </Switch>

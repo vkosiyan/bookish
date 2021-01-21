@@ -31,16 +31,7 @@ function BookSearch({setResults, results, setSearchText, searchText}) {
             {console.log('Hello')}
         <form onSubmit={handleSubmit}>  
        
-            <div className="card-header main-search">  
-                <div className="row">  
-                    <div className="col-12 col-md-3 col-xl-3">                      
-                        <input onChange={handleChange} className="AutoFocus form-control" placeholder="Search books" type="text" style={{ minWidth: 300 }}/>  
-                    </div>  
-                    <div style={{float: 'right'}}>  
-                        <input type="submit" value="Search" className="btn btn-primary search-btn" />  
-                    </div>  
-                </div>  
-            </div>  
+
             
             {results ? 
             <div className="card">  

@@ -54,10 +54,10 @@ function Book(props){
 
     <Grid celled>
     <Grid.Row>
-      <Grid.Column width={6}>
-      <Image src={bookImage !== undefined ? bookImage : smallBookImage} alt='Image Unavailable' style={{ marginTop: '2em' }}/>
-      </Grid.Column>
-      <Grid.Column width={10}>
+
+      <Grid.Column>
+      <Image src={bookImage !== undefined ? bookImage : smallBookImage} floated='left'
+    size='medium' style={{ margin: '2em 2em 2em 2em' }} alt='Image Unavailable'/>
             <Header as='h1'>Title: {bookTitle} </Header>
       
         <div className="book">Author: {bookAuthors}</div>

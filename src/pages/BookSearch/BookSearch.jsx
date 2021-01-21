@@ -18,7 +18,7 @@ function BookSearch({setResults, results, setBook, book}) {
     function handleSubmit(event) {  
         console.log("I am event", event)
         event.preventDefault();  
-        this.props.history.push('/');
+
         axios.get("https://www.googleapis.com/books/v1/volumes?q=" + book + "&key=" + apiKey + "&maxResults=40")  
             .then(data => {  
                 console.log('DATA ITEMS', data.data.items);  

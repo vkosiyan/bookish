@@ -1,6 +1,5 @@
 import React, { useState } from "react";  
 import axios from 'axios';  
-import { Card } from 'react-bootstrap';  
 import { Grid, Image, Rating, Divider } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
@@ -35,14 +34,15 @@ function BookSearch({setResults, results, setBook, book}) {
        
             <div className="card-header main-search">  
                 <div className="row">  
-                    <div className="col-12 col-md-3 col-xl-3">  
-                        <input onChange={handleChange} className="AutoFocus form-control" placeholder="Search books" type="text" />  
+                    <div className="col-12 col-md-3 col-xl-3">                      
+                        <input onChange={handleChange} className="AutoFocus form-control" placeholder="Search books" type="text" style={{ minWidth: 300 }}/>  
                     </div>  
-                    <div className="ml-auto">  
+                    <div style={{float: 'right'}}>  
                         <input type="submit" value="Search" className="btn btn-primary search-btn" />  
                     </div>  
                 </div>  
             </div>  
+            
             {results ? 
             <div className="card">  
                 <div className="row">  

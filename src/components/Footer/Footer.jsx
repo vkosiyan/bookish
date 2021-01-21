@@ -20,10 +20,10 @@ export default function PageFooter({user, handleLogout, setResults, results, boo
         margin: '5em 0em 0em', 
         padding: '5em 0em',
         borderTop: '1px solid #ddd',
-        position: 'absolute',
         left:0,
         bottom:0,
-        right:0
+        right:0,
+        position: 'absolute'
       }
 
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Segment, Dimmer, Loader } from 'semantic-ui-react'
+import { Grid, Segment, Dimmer, Loader, Container } from 'semantic-ui-react'
 import userService from '../../utils/userService';
 import ProfileBio from '../../components/ProfileBio/ProfileBio';
 import PostFeed from '../../components/PostFeed/PostFeed';
@@ -9,15 +9,15 @@ import { useLocation } from 'react-router-dom';
 
 
 
-export default function ProfilePage({ user, handleLogout, setResults, results, book, setBook }) {
+export default function ProfilePage({ user, handleLogout}) {
 
     const [posts, setPosts] = useState([])
     const [profileUser, setProfileUser] = useState({})
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
 
     const location = useLocation()
-    console.log(location)
+    console.log(user)
 
     async function getProfile() {
 
@@ -69,6 +69,7 @@ export default function ProfilePage({ user, handleLogout, setResults, results, b
     return (
 
         <>
+        <Container text style={{ marginTop: '7em' }}>
             { loading ?
                 <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle' >
                 
@@ -89,7 +90,7 @@ export default function ProfilePage({ user, handleLogout, setResults, results, b
                     </Grid.Row>
                     <Grid.Row>
                         <Grid.Column>
-                            <ProfileBio user={profileUser} />
+                            <ProfileBio user={user} />
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row centered>
@@ -98,7 +99,9 @@ export default function ProfilePage({ user, handleLogout, setResults, results, b
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
+            
             }
+            </Container>
         </>
     )
 }

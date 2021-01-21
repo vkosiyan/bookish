@@ -17,7 +17,8 @@ function App() {
   }
   //// HOOKS ////
   const [results, setResults] = useState([]);  
-  const [book, setBook] = useState(""); 
+  const [searchText, setSearchText] = useState(""); 
+  const [currentBook, setCurrentBook] = useState(""); 
   const [user, setUser] = useState(userService.getUser()) // getUser decodes our JWT token, into a javascript object
   // this object corresponds to the jwt payload which is defined in the server signup or login function that looks like 
   // this  const token = createJWT(user); // where user was the document we created from mongo
@@ -35,14 +36,16 @@ function App() {
             <>
                <Switch>
                 <Route exact path="/">
-                    <Home user={user} handleLogout={handleLogout} setResults={setResults} results={results} book={book} setBook={setBook}/>
+                    <Home user={user} handleLogout={handleLogout} setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText}/>
                 </Route>
+                
                 <Route exact path="/:username">
                   <ProfilePage user={user} handleLogout={handleLogout}/>
                 </Route>
+                
                 <Route path="/books/:bookid"
             render={(routerProps) => (
-              <BookInfo {...routerProps} user={user} handleLogout={handleLogout} book={book} setBook={setBook} user={user}/>
+              <BookInfo {...routerProps} user={user} handleLogout={handleLogout} searchText={searchText} setSearchText={setSearchText} user={user} currentBook={currentBook} setCurrentBook={setCurrentBook}/>
             )}
           />
           </Switch>

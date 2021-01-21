@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Link } from 'react-router-dom';
 import { Grid, Image, Rating, Divider, Container, Header } from 'semantic-ui-react'
+import PageFooter from "../../components/Footer/Footer";
 import PageHeader from "../../components/Header/Header";
 import BookSearch from "../BookSearch/BookSearch";
 
@@ -8,12 +9,12 @@ import BookSearch from "../BookSearch/BookSearch";
 const bookURL = "https://www.googleapis.com/books/v1/volumes/";
 
 function Book(props){
-   const [book, setBook] = useState(null)
-   const [bookTitle, setBookTitle] = useState(null)
-   const [bookImage, setBookImage] = useState(null)
+   const [book, setCurrentBook] = useState(null)
+   const [bookTitle, setCurrentBookTitle] = useState(null)
+   const [bookImage, setCurrentBookImage] = useState(null)
    const [smallBookImage, setSmallBookImage] = useState(null)
-   const [bookAuthors, setBookAuthors] = useState(null)
-   const [bookDescription, setBookDescription] = useState(null)
+   const [bookAuthors, setCurrentBookAuthors] = useState(null)
+   const [bookDescription, setCurrentBookDescription] = useState(null)
    console.log("I AM BOOK", book)
 
 
@@ -34,14 +35,13 @@ function Book(props){
       const smallBookImage = volumeInfo.imageLinks.thumbnail
       const bookAuthors = volumeInfo.authors
       const bookDescription = volumeInfo.description
-      console.log("IMAGE", bookImage)
-      setBook(volumeInfo)
-      props.setBook(volumeInfo)
-      setBookTitle(bookTitle)
-      setBookImage(bookImage)
+      setCurrentBook(volumeInfo)
+      props.setCurrentBook(volumeInfo)
+      setCurrentBookTitle(bookTitle)
+      setCurrentBookImage(bookImage)
       setSmallBookImage(smallBookImage)
-      setBookAuthors(bookAuthors)
-      setBookDescription(bookDescription)
+      setCurrentBookAuthors(bookAuthors)
+      setCurrentBookDescription(bookDescription)
 
 
     }
@@ -67,7 +67,7 @@ function Book(props){
       </Grid.Column>
     </Grid.Row>
     </Grid>
-
+    <PageFooter/>
       </div>
     )
 }

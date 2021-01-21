@@ -5,6 +5,7 @@ import {  Image, Grid, Segment } from 'semantic-ui-react';
 export default function ProfileBio({user}) { 
   return (
   <Grid textAlign='center' columns={2}>
+    {console.log('Hitting page hello')}
     <Grid.Row>
       <Grid.Column>
         <Image src={`${user.photoUrl ? user.photoUrl : "https://react.semantic-ui.com/images/wireframe/square-image.png"} `} avatar size='small' />

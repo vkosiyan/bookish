@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from "react";
 import { Link } from 'react-router-dom';
-import { Grid, Image, Rating, Divider } from 'semantic-ui-react'
+import { Grid, Image, Rating, Divider, Container, Header } from 'semantic-ui-react'
+import PageHeader from "../../components/Header/Header";
+import BookSearch from "../BookSearch/BookSearch";
 
 
 const bookURL = "https://www.googleapis.com/books/v1/volumes/";
@@ -48,13 +50,24 @@ function Book(props){
 
     return (
       <div>
+    <PageHeader user={props.user} handleLogout={props.handleLogout} />
 
-        <h1>Title: {bookTitle} </h1>
-        <Image src={bookImage !== undefined ? bookImage : smallBookImage} alt='Image Unavailable' />
+    <Grid celled>
+    <Grid.Row>
+      <Grid.Column width={6}>
+      <Image src={bookImage !== undefined ? bookImage : smallBookImage} alt='Image Unavailable' style={{ marginTop: '2em' }}/>
+      </Grid.Column>
+      <Grid.Column width={10}>
+            <Header as='h1'>Title: {bookTitle} </Header>
+      
         <div className="book">Author: {bookAuthors}</div>
         <div className="book">Description: {bookDescription}</div>
         <button onClick={() => props.history.push('/')}>Back</button>
         <Link to='/'>Home</Link>
+      </Grid.Column>
+    </Grid.Row>
+    </Grid>
+
       </div>
     )
 }

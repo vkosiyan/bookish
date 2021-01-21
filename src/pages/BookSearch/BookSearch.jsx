@@ -13,23 +13,26 @@ function BookSearch({setResults, results, setBook, book}) {
     function handleChange(event) { 
         const book = event.target.value; 
         console.log(book) 
-        setBook(book);  
+        setBook(book);
     }  
     function handleSubmit(event) {  
-        console.log(event)
+        console.log("I am event", event)
         event.preventDefault();  
+        this.props.history.push('/');
         axios.get("https://www.googleapis.com/books/v1/volumes?q=" + book + "&key=" + apiKey + "&maxResults=40")  
             .then(data => {  
                 console.log('DATA ITEMS', data.data.items);  
-                setResults(data.data.items);  
-                
+                setResults(data.data.items);                  
             }) 
             .then(d => {
                 
             }) 
+            
     }  
     return (  
+
         <form onSubmit={handleSubmit}>  
+       
             <div className="card-header main-search">  
                 <div className="row">  
                     <div className="col-12 col-md-3 col-xl-3">  
@@ -40,8 +43,11 @@ function BookSearch({setResults, results, setBook, book}) {
                     </div>  
                 </div>  
             </div>  
+            {results ? 
             <div className="card">  
                 <div className="row">  
+                
+            
                     {results.map((book, idx) => (  
 
                         <Grid celled='internally' key={idx}>
@@ -65,10 +71,11 @@ function BookSearch({setResults, results, setBook, book}) {
                         </Grid>
                         
                      
-                    ))}  
+                    ))} 
                 </div>  
-            </div>  
+            </div>  : ''}
         </form>  
+
   
     )  
 }  

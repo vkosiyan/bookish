@@ -40,9 +40,9 @@ function App() {
                 <Route exact path="/:username">
                   <ProfilePage user={user} handleLogout={handleLogout}/>
                 </Route>
-                <Route exact path="/books/:bookid"
+                <Route path="/books/:bookid"
             render={(routerProps) => (
-              <BookInfo {...routerProps} book={book} setBook={setBook}/>
+              <BookInfo {...routerProps} user={user} handleLogout={handleLogout} book={book} setBook={setBook} user={user}/>
             )}
           />
           </Switch>

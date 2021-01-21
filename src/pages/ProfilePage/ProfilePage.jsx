@@ -7,7 +7,9 @@ import PageHeader from '../../components/Header/Header';
 import * as likesAPI from '../../utils/likesService';
 import { useLocation } from 'react-router-dom';
 
-export default function ProfilePage({ user, handleLogout }) {
+
+
+export default function ProfilePage({ user, handleLogout, setResults, results, book, setBook }) {
 
     const [posts, setPosts] = useState([])
     const [profileUser, setProfileUser] = useState({})
@@ -82,6 +84,7 @@ export default function ProfilePage({ user, handleLogout }) {
                     <Grid.Row>
                         <Grid.Column>
                             <PageHeader user={user} handleLogout={handleLogout} />
+
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row>

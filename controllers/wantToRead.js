@@ -1,15 +1,15 @@
-const Post = require('../models/post');
+const Post = require('../models/book');
 
 module.exports = {
     create,
-    deleteLike
+    deleteWantToRead
 }
 
 async function create(req, res){
  
     try {
         const post = await Post.findById(req.params.id);
-        post.likes.push({username: req.user.username, userId: req.user._id}); //mutating a document
+        post.wantToRead.push({username: req.user.username, userId: req.user._id}); //mutating a document
         await post.save()// save it
         res.status(201).json({data: 'like added'})
     } catch(err){
@@ -19,11 +19,11 @@ async function create(req, res){
     
 }
 
-async function deleteLike(req, res){
+async function deleteWantToRead(req, res){
     try {
         
-        const post = await Post.findOne({'likes._id': req.params.id, 'likes.username': req.user.username});
-        post.likes.remove(req.params.id) // mutating a document
+        const post = await Post.findOne({'wantToRead._id': req.params.id, 'wantToRead.username': req.user.username});
+        post.wantToRead.remove(req.params.id) // mutating a document
         await post.save() // after you mutate a document you must save
         res.json({data: 'like removed'})
     } catch(err){

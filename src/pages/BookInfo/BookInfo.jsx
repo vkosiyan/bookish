@@ -42,7 +42,6 @@ function Book(props){
       setCurrentBookAuthors(bookAuthors)
       setCurrentBookDescription(bookDescription)
 
-
     }
     makeApiCall()
   },[])

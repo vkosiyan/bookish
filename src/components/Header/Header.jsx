@@ -2,7 +2,6 @@ import { createMedia } from '@artsy/fresnel'
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-
 import {
   Container,
   Divider,
@@ -20,10 +19,12 @@ import BookSearch from '../../pages/BookSearch/BookSearch';
 import SearchBar from '../../pages/SearchBar/SearchBar';
 
 
+
 const fixedMenuStyle = {
   backgroundColor: '#A3CACC',
   border: '1px solid #ddd',
-  boxShadow: '0px 3px 5px rgba(0, 0, 0, 0.2)'
+  boxShadow: '0px 3px 5px rgba(0, 0, 0, 0.2)',
+  fontSize:'1.5em'
 }
 
 
@@ -32,15 +33,15 @@ export default function PageHeader({user, handleLogout, setResults, results, set
     return (
         <div>
             <Menu borderless fixed='top' style={fixedMenuStyle}>
-            <Container>
-              <Menu.Item header><Link to="/">Home</Link></Menu.Item>
+            <Menu.Item header><Link to="/"> <Image size='small' src='/bookishlogo.png' style={{ marginLeft: '5em' }} /></Link></Menu.Item>
+            <Menu.Item header><Link to="/">Home</Link></Menu.Item>
               <Menu.Item as='a'>Blog</Menu.Item>
               <Menu.Item as='a'>Articles</Menu.Item>
-              
-              <SearchBar setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText}/>
+              <Menu.Item><SearchBar setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText}/></Menu.Item>
+            <Container>   
 
               <Menu.Menu position='right'>
-              <Link to={`/${user.username}`}><Image src={user.photoUrl ? user.photoUrl : "https://react.semantic-ui.com/images/wireframe/square-image.png"} avatar></Image> </Link> 
+              <Menu.Item as='a'><Link to={`/${user.username}`}><Image src={user.photoUrl ? user.photoUrl : "https://react.semantic-ui.com/images/wireframe/square-image.png"} avatar size='tiny'></Image> </Link> </Menu.Item>
                 <Dropdown text={user.username} pointing className='link item'>
                   <Dropdown.Menu>
                     <Dropdown.Item>List Item</Dropdown.Item>

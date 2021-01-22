@@ -7,9 +7,6 @@ import PageHeader from '../../components/Header/Header';
 import * as likesAPI from '../../utils/likesService';
 import { useLocation } from 'react-router-dom';
 import PageFooter from '../../components/Footer/Footer';
-import BookSearch from '../BookSearch/BookSearch';
-
-
 
 export default function ProfilePage({ user, handleLogout, setResults, results, searchText, setSearchText}) {
 
@@ -66,13 +63,14 @@ export default function ProfilePage({ user, handleLogout, setResults, results, s
         getProfile()
 
     }, [])
+    
 
     return (
 
-        <>
-        <Container text style={{ marginTop: '7em' }}>
+        <div>
+
             
-                <Grid>
+                <Grid style={{ marginTop: '15em' }}>
                     <Grid.Row>
                         <Grid.Column>
                             <PageHeader user={user} handleLogout={handleLogout} setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText}/>
@@ -80,15 +78,15 @@ export default function ProfilePage({ user, handleLogout, setResults, results, s
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row>
-                        <Grid.Column>
+                       
                             <ProfileBio user={user} />
-                        </Grid.Column>
+                       
                     </Grid.Row>
                     <Grid.Row centered>                        
                     
-                        <Grid.Column style={{ maxWidth: 750 }}>
+                       
                             <PostFeed isProfile={true} posts={posts} numPhotosCol={3} addLike={addLike} removeLike={removeLike} user={user} />
-                        </Grid.Column>
+                       
                         
                     </Grid.Row> 
                     
@@ -96,7 +94,7 @@ export default function ProfilePage({ user, handleLogout, setResults, results, s
             
             
             <PageFooter/>
-            </Container>
-        </>
+
+        </div>
     )
 }

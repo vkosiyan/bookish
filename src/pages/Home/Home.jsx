@@ -15,7 +15,7 @@ export default function Home({props, user, handleLogout, setResults, results, se
         <PageHeader user={user} handleLogout={handleLogout} setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText}/>
      
         <Container text style={{ marginTop: '7em' }}>
-        <BookSearch setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText}/>
+
         </Container>
 
 

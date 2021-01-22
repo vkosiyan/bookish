@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Grid, Image, Rating, Divider, Container, Header } from 'semantic-ui-react'
 import PageFooter from "../../components/Footer/Footer";
 import PageHeader from "../../components/Header/Header";
-import BookSearch from "../BookSearch/BookSearch";
 
 
 const bookURL = "https://www.googleapis.com/books/v1/volumes/";
@@ -52,7 +51,7 @@ function Book(props){
       <div>
     <PageHeader user={props.user} handleLogout={props.handleLogout} setResults={props.setResults} results={props.results} searchText={props.searchText} setSearchText={props.setSearchText} />
      
-    <Grid celled>
+    <Grid celled style={{ marginTop: '15em' }}> 
     <Grid.Row>
 
       <Grid.Column>
@@ -67,7 +66,6 @@ function Book(props){
       </Grid.Column>
     </Grid.Row>
     </Grid>
-    {/* <BookSearch setResults={props.setResults} results={props.results} searchText={props.searchText} setSearchText={props.setSearchText}/> */}
     <PageFooter/>
       </div>
     )

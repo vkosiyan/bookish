@@ -33,14 +33,10 @@ function BookSearch({setResults, results, setSearchText, searchText}) {
     return (  
         <div>
             {console.log('Hello')}
-        <form onSubmit={handleSubmit}>  
-       
-
-            
+        <form onSubmit={handleSubmit}>                    
             
             <div className="card">  
-                <div className="row">  
-                
+                <div className="row">                  
             
                     {results.map((book, idx) => (  
 
@@ -48,17 +44,17 @@ function BookSearch({setResults, results, setSearchText, searchText}) {
 
                             <Grid.Row>
                             <Grid.Column width={3}>
-                                <Image src={book.volumeInfo.imageLinks !== undefined ? book.volumeInfo.imageLinks.thumbnail : ''} alt={book.volumeInfo.title} />
+                                <Image src={book.volumeInfo.imageLinks !== undefined ? book.volumeInfo.imageLinks.thumbnail : ''} alt={book.volumeInfo.title}/>
                             </Grid.Column>
-                            <Grid.Column width={10}>
+                            <Grid.Column width={13}>
                             <h3>{book.volumeInfo.title}</h3>
                             <h4>Authors: {book.volumeInfo.authors}</h4> 
                             <h4>Avg. Rating: <Rating maxRating={5} defaultRating={book.volumeInfo.averageRating ? book.volumeInfo.averageRating : 0} icon='star' /></h4>
-                            <p max="150">{book.volumeInfo.description}...</p>
+                            <p>{book.volumeInfo.description}...</p>
                             
                             
 
-                            <Link to={"/books/" + book.id}>{book.volumeInfo.title}{book.id}</Link>
+                            <Link to={"/books/" + book.id}><button class="ui primary button">Details</button></Link>
                             </Grid.Column>
                             </Grid.Row>
                             <Divider section />

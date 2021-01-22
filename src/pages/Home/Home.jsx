@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Segment, Container, Grid } from 'semantic-ui-react'
 import PageFooter from '../../components/Footer/Footer';
 import PageHeader from '../../components/Header/Header';
-import BookSearch from '../BookSearch/BookSearch';
+
 
 
 

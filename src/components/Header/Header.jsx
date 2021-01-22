@@ -15,8 +15,8 @@ import {
   Segment,
   Visibility
 } from 'semantic-ui-react'
-import BookSearch from '../../pages/BookSearch/BookSearch';
-import SearchBar from '../../pages/SearchBar/SearchBar';
+import BookSearch from '../BookSearch/BookSearch';
+import SearchBar from '../SearchBar/SearchBar';
 
 
 

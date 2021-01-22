@@ -1,11 +1,11 @@
 import tokenService from './tokenService';
 
-const BASE_URL = '/api/posts'
+const BASE_URL = '/api/books'
 
-export function create(post){
+export function create(book){
     return fetch(BASE_URL, {
         method: 'POST',
-        body: post, // our info from the form
+        body: book, // our info from the form
         headers: {
             'Authorization': 'Bearer ' + tokenService.getToken()
         }

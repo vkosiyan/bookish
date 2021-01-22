@@ -8,7 +8,7 @@ import userService from '../../utils/userService'
 import Home from '../Home/Home';
 import BookInfo from '../BookInfo/BookInfo';
 import SearchResults from '../SearchResults/SearchResults';
-import SearchBar from '../SearchBar/SearchBar';
+
 
 function App() {
   function handleSignUpOrLogin(){

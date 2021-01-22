@@ -32,8 +32,7 @@ function SearchBar({setResults, results, setSearchText, searchText}) {
             
     }  
     return (  
-        <div>
-            {console.log('Hello')}
+        <div>            
         <form onSubmit={handleSubmit}>  
        
             <div className="card-header main-search">  

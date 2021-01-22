@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import axios from 'axios';  
 import { Grid, Image, Rating, Divider } from 'semantic-ui-react';
 import { Redirect } from 'react-router'
+import { Link, useHistory } from 'react-router-dom'
 
 
 
 function SearchBar({setResults, results, setSearchText, searchText}) {      
     
-    const apiKey = 'AIzaSyB2MR9Aytx1NBrLhcns0k2UAd0RfsemqlE'
+    const apiKey = 'AIzaSyB2MR9Aytx1NBrLhcns0k2UAd0RfsemqlE';
+    const history = useHistory();
     
 
     function handleChange(event) { 
@@ -21,7 +23,8 @@ function SearchBar({setResults, results, setSearchText, searchText}) {
         axios.get("https://www.googleapis.com/books/v1/volumes?q=" + searchText + "&key=" + apiKey + "&maxResults=40")  
             .then(data => {  
                 console.log('DATA ITEMS', data.data.items);  
-                setResults(data.data.items);                  
+                setResults(data.data.items);
+                history.push('/search')                     
             }) 
             .then(d => {
                 

@@ -84,14 +84,12 @@ export default function ProfilePage({ user, handleLogout, setResults, results, s
                             <ProfileBio user={user} />
                         </Grid.Column>
                     </Grid.Row>
-                    <Grid.Row centered>
-                    { results ?            
-                         <BookSearch setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText}/>
-                        :
+                    <Grid.Row centered>                        
+                    
                         <Grid.Column style={{ maxWidth: 750 }}>
                             <PostFeed isProfile={true} posts={posts} numPhotosCol={3} addLike={addLike} removeLike={removeLike} user={user} />
                         </Grid.Column>
-                        }
+                        
                     </Grid.Row> 
                     
                 </Grid>

@@ -25,7 +25,7 @@ export default function SearchResults({props, user, handleLogout, setResults, re
        
 
       <Container textAlign='center'>
-       <PageFooter/>
+      
        </Container>
 
        </div>

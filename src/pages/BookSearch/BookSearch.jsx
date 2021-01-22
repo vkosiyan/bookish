@@ -1,11 +1,14 @@
 import React, { useState } from "react";  
 import axios from 'axios';  
 import { Grid, Image, Rating, Divider } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
+
 
 function BookSearch({setResults, results, setSearchText, searchText}) {      
 
-    const apiKey = 'AIzaSyB2MR9Aytx1NBrLhcns0k2UAd0RfsemqlE'
+    const apiKey = 'AIzaSyB2MR9Aytx1NBrLhcns0k2UAd0RfsemqlE';
+    const history = useHistory();
+
 
     function handleChange(event) { 
         const searchText = event.target.value; 
@@ -19,7 +22,8 @@ function BookSearch({setResults, results, setSearchText, searchText}) {
         axios.get("https://www.googleapis.com/books/v1/volumes?q=" + searchText + "&key=" + apiKey + "&maxResults=40")  
             .then(data => {  
                 console.log('DATA ITEMS', data.data.items);  
-                setResults(data.data.items);                  
+                setResults(data.data.items);
+                history.push('/search')                  
             }) 
             .then(d => {
                 
@@ -33,7 +37,7 @@ function BookSearch({setResults, results, setSearchText, searchText}) {
        
 
             
-            {results ? 
+            
             <div className="card">  
                 <div className="row">  
                 
@@ -63,7 +67,7 @@ function BookSearch({setResults, results, setSearchText, searchText}) {
                      
                     ))} 
                 </div>  
-            </div>  : 'Hello'}
+            </div>  
         </form>  
         </div>
   

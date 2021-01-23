@@ -29,7 +29,7 @@ function BookCard({book, isProfile, user, addFavorite, removeFavorite}) {
       <Image src={`${book.imageLink}`} wrapped ui={false} />
       <Card.Content>
       <Card.Description>
-      {book.title}
+      {book.id}
         {book.description}
       </Card.Description>
       </Card.Content>

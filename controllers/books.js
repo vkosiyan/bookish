@@ -1,25 +1,33 @@
-const Tvshow = require('../models/book');
-const reviews = require('./reviews');
+const Book = require('../models/book');
 
 module.exports = {
     create
 };
 
 function create(req, res){
-    console.log(req.file, req.body, 'this is create method', req.user)
     try {
-        // const filePath = `${uuidv4()}/${req.file.originalname}`
-        // const params = {Bucket: 'catcollectvk', Key: filePath, Body: req.file.buffer};
-        // s3.upload(params, async function(err, data){
-        //         // data.Location is the address where our image is stored on aws
-        //     const post = await Post.create({caption: req.body.caption, user: req.user, photoUrl: data.Location});
-        //     const populatedUserPost = await post.populate('user').execPopulate();
-        //     res.status(201).json({post: populatedUserPost})
-        // })
+        const book = Book.findOne({id: req.body.id});
+        console.log(book, ' this book')
+        if (book) return res.status(401).json({err: 'already a book'});
+        // had to update the password from req.body.pw, to req.body password
+       
+        const newBook = Book.create({id: req.body.id});
 
-
-    } catch(err){
-        console.log(err)
-        res.json({data: err})
-    }
+      } catch (err) {
+        return res.status(401).json(err);
+      }
 }
+
+
+// async function index(req, res){
+//     try {
+//         // this populates the user when you find the posts
+//         // so you'll have access to the users information 
+//         // when you fetch teh posts
+//         const books = await Book.find({}).populate('user').exec() // userSchema.set('toObject') gets invoked, to delete the password
+//         // when we populate the user so we don't have to worry about sending over the password!
+//         res.status(200).json({posts})
+//     } catch(err){
+
+//     }
+// }

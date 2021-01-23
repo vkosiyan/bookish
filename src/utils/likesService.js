@@ -7,7 +7,8 @@ export function create(id) {
     return fetch(`${BASE_URL}posts/${id}/likes`, {
       method: 'POST',
       headers: {
-        'Authorization': 'Bearer ' + tokenService.getToken()
+        'Authorization': 'Bearer ' + tokenService.getToken(),
+      
       }
     
     }).then(res => res.json());

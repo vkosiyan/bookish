@@ -3,14 +3,16 @@ import { Card  } from 'semantic-ui-react'
 import BookCard from '../BookCard/BookCard';
 
 
-export default function BookFeed({posts, isProfile, numPhotosCol, user, addFavorite, removeFavorite}){
+export default function FavoritesFeed({books, isProfile, numPhotosCol, user, addFavorite, removeFavorite}){
 
     return (
         <Card.Group itemsPerRow={numPhotosCol} stackable>
            
-                {posts.map((post) => {
+                {books.map((book) => {
+                    {console.log('I AM BOOK', books)}
                 return ( 
-                        <BookCard post={post} key={post._id} isProfile={isProfile} user={user} addLike={addFavorite} removeLike={removeFavorite}/>
+                        <BookCard book={book} key={book._id} isProfile={isProfile} user={user} addLike={addFavorite} removeLike={removeFavorite}/>
+                        
                     )
                 })}
         </Card.Group>

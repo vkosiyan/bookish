@@ -11,15 +11,26 @@ const reviewSchema = new Schema({
     timestamps: true
   });
 
-  const usersFavoritedSchema = mongoose.Schema({
+  const favoritedSchema = mongoose.Schema({
     username: String,
     userId: { type: mongoose.Schema.Types.ObjectId }
   })
 
+  // const wantToReadSchema = mongoose.Schema({
+  //   username: String,
+  //   userId: { type: mongoose.Schema.Types.ObjectId }
+  // })
+
 const bookSchema = new Schema({
+    user: { type: Schema.Types.ObjectId, ref: 'User'},
+    title: String,
     id: Number,
+    authors: String,
+    imageLink: String,
+    description: String,
     review: [reviewSchema],
-    usersFavorited: [usersFavoritedSchema],
+    usersFavorited: [favoritedSchema]
+
     });
 
 module.exports = mongoose.model('Book', bookSchema);

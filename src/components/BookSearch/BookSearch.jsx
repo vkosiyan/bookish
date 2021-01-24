@@ -2,19 +2,15 @@ import React, { useState } from "react";
 import axios from 'axios';  
 import { Grid, Image, Rating, Divider } from 'semantic-ui-react'
 import { Link, useHistory } from 'react-router-dom'
+import AddToFavorites from "../AddToFavorites/AddToFavorites";
 
 
-function BookSearch({setResults, results, setSearchText, searchText}) {      
+function BookSearch({setResults, results, setSearchText, searchText, handleAddBook}) {      
 
     const apiKey = 'AIzaSyB2MR9Aytx1NBrLhcns0k2UAd0RfsemqlE';
     const history = useHistory();
 
 
-    function handleChange(event) { 
-        const searchText = event.target.value; 
-        console.log('I AM BOOK', searchText) 
-        setSearchText(searchText);
-    }  
     function handleSubmit(event) {  
         console.log("I am event", event)
         event.preventDefault();  
@@ -55,6 +51,8 @@ function BookSearch({setResults, results, setSearchText, searchText}) {
                             
 
                             <Link to={"/books/" + book.id}><button class="ui primary button">Details</button></Link>
+                            
+                            <AddToFavorites handleAddBook={handleAddBook} bookId={book.id} bookTitle={book.volumeInfo.title} bookAuthors={book.volumeInfo.authors} bookImage={book.volumeInfo.imageLinks} bookDescription={book.volumeInfo.description}/>
                             </Grid.Column>
                             </Grid.Row>
                             <Divider section />

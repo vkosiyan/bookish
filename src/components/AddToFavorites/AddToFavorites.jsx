@@ -3,13 +3,13 @@ import { Button, Form, Segment } from 'semantic-ui-react'
 import * as bookService from '../../utils/bookService';
 
 
-export default function AddToFavorites({bookId, bookImage, currentBook}){
+export default function AddToFavorites({bookId, bookTitle, bookImage, bookDescription, bookAuthors, handleAddBook}){
   const [state, setState] = useState({
-    id: '',
-    title: '',
-    authors: '',
-    description: '',
-    imageLink: ''
+    id: `${bookId}`,
+    title: `${bookTitle}`,
+    authors: `${bookAuthors}`,
+    description: `${bookDescription}`,
+    imageLink: `${bookImage}`
     // id: currentBook.id,
     // title: currentBook.title,
     // authors: currentBook.authors,
@@ -19,19 +19,17 @@ export default function AddToFavorites({bookId, bookImage, currentBook}){
 
     function handleSubmit(e){
     e.preventDefault()
-    setState({
-      ...state,
-    id: `${bookId}`,
-    title: `${currentBook.title}`,
-    authors: `${currentBook.authors}`,
-    description: `${currentBook.description}`,
-    imageLink: `${bookImage}`
-    })
-    bookService.create(state);
-    console.log(state)
-
-
-             
+    // setState({
+    //   ...state,
+    // id: `${bookId}`,
+    // title: `${bookTitle}`,
+    // authors: `${bookAuthors}`,
+    // description: `${bookDescription}`,
+    // imageLink: `${bookImage}`
+    // })
+    console.log('I AM NEW STATE', state)
+    console.log(bookDescription)
+    handleAddBook(state)           
 
     // Have to submit the form now! We need a function!
   }

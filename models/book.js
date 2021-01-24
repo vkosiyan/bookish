@@ -22,7 +22,7 @@ const reviewSchema = new Schema({
   // })
 
 const bookSchema = new Schema({
-    user: { type: Schema.Types.ObjectId, ref: 'User'},
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     title: String,
     id: Number,
     authors: String,
@@ -30,7 +30,6 @@ const bookSchema = new Schema({
     description: String,
     review: [reviewSchema],
     usersFavorited: [favoritedSchema]
-
     });
 
 module.exports = mongoose.model('Book', bookSchema);

@@ -24,21 +24,8 @@ export default function Home({props, user, handleLogout, setResults, results, se
           const bestSellingBooks = json.results
           console.log("I am JSON", json.results)
           setBestSellerBooks(bestSellingBooks)
-
-    
-        //   const bookImage = volumeInfo.imageLinks.small
-        //   const smallBookImage = volumeInfo.imageLinks.thumbnail
-        //   const bookAuthors = volumeInfo.authors
-        //   const bookDescription = volumeInfo.description
-        //   props.setCurrentBook(volumeInfo)
-        //   setCurrentBookImage(bookImage)
-        //   setSmallBookImage(smallBookImage)
-        //   setCurrentBookAuthors(bookAuthors)
-        //   setCurrentBookDescription(bookDescription)
-    
         }
-        makeApiCall()
-        
+        makeApiCall()   
     
       },[])
 

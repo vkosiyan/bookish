@@ -6,7 +6,8 @@ module.exports = {
 
 function create(req, res){
     try {
-        const book = Book.findOne({id: req.body.id});
+        // const book = Book.findOne({id: req.body.id});
+        console.log('HITTING BOOKS IN CONTROLLERS', req.body)
         console.log(book, ' this book')
         if (book) return res.status(401).json({err: 'already a book'});
         // had to update the password from req.body.pw, to req.body password

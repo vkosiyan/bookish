@@ -1,10 +1,13 @@
 import tokenService from './tokenService';
 
-const BASE_URL = '/api/books'
+const BASE_URL = '/api/books/'
 
 export function create(book){
   console.log('Hitting Books Service')
-    return fetch(BASE_URL, {
+  console.log('I AM PROPS IN BOOK SERVICE', book)
+  console.log('I AM BOOKID in BOOK SERVICE', book.id)
+  
+    return fetch(BASE_URL + book.id, {
         method: 'POST',
         body: book, // our info from the form
         headers: {

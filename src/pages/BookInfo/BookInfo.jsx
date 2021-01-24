@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Link } from 'react-router-dom';
 import { Grid, Image, Rating, Divider, Container, Header, Button } from 'semantic-ui-react'
+import AddToFavorites from "../../components/AddToFavorites/AddToFavorites";
 import PageFooter from "../../components/Footer/Footer";
 import PageHeader from "../../components/Header/Header";
 import * as bookService from '../../utils/bookService';
@@ -13,6 +14,7 @@ function Book(props){
    const [smallBookImage, setSmallBookImage] = useState(null)
    const [bookAuthors, setCurrentBookAuthors] = useState(null)
    const [bookDescription, setCurrentBookDescription] = useState(null)
+   const [bookId, setBookId] = useState(null)
    
    const [error, setError ] = useState('')
    const [state, setState] = useState({
@@ -38,7 +40,6 @@ function handleSubmit(e){
       const res  =  await fetch(url)
       const json = await res.json()
       const volumeInfo = json.volumeInfo
-      const bookId = bookid
 
       const bookImage = volumeInfo.imageLinks.small
       const smallBookImage = volumeInfo.imageLinks.thumbnail
@@ -49,6 +50,7 @@ function handleSubmit(e){
       setSmallBookImage(smallBookImage)
       setCurrentBookAuthors(bookAuthors)
       setCurrentBookDescription(bookDescription)
+      setBookId(bookid)
 
     }
     makeApiCall()
@@ -72,7 +74,8 @@ function handleSubmit(e){
         <div className="book">Description: {bookDescription}</div>
         <button onClick={() => props.history.push('/')}>Back</button>
         <Link to='/'>Home</Link>
-        <button class="ui button" onClick={handleSubmit} >Add to Favorites</button>
+        <AddToFavorites currentBook={props.currentBook} bookId={bookId} bookImage={bookImage}/>
+        {/* <button class="ui button" onClick={handleSubmit} >Add to Favorites</button> */}
       </Grid.Column>
     </Grid.Row>
     </Grid>

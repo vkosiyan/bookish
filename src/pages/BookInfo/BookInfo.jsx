@@ -63,7 +63,9 @@ function handleSubmit(e){
 
     return (
       <div>
-<Segment raised>
+
+    <PageHeader user={props.user} handleLogout={props.handleLogout} setResults={props.setResults} results={props.results} searchText={props.searchText} setSearchText={props.setSearchText} />
+    {/* <Segment raised>
     <Container fluid  style={{ marginTop: '15em' }}>
       
       
@@ -80,9 +82,9 @@ function handleSubmit(e){
         <Link to='/'>Home</Link>
       </p>
     </Container>
-    </Segment>
-    <PageHeader user={props.user} handleLogout={props.handleLogout} setResults={props.setResults} results={props.results} searchText={props.searchText} setSearchText={props.setSearchText} />
-     
+    </Segment> */}
+
+    
     <Grid celled style={{ marginTop: '15em' }}> 
     <Grid.Row>
 

@@ -42,6 +42,7 @@ function App() {
 }
   //// HOOKS ////
   const [results, setResults] = useState([]);
+  const[bestSellerInfo, setBestSellerInfo] = useState([])
   const [bestSellerBooks, setBestSellerBooks] = useState([])  
   const [searchText, setSearchText] = useState(""); 
   const [currentBook, setCurrentBook] = useState(""); 
@@ -62,7 +63,7 @@ function App() {
             <>
                <Switch>
                 <Route exact path="/">
-                    <Home user={user} handleLogout={handleLogout} setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText} bestSellerBooks={bestSellerBooks} setBestSellerBooks={setBestSellerBooks}/>
+                    <Home user={user} handleLogout={handleLogout} setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText} bestSellerBooks={bestSellerBooks} setBestSellerBooks={setBestSellerBooks} bestSellerInfo={bestSellerInfo} setBestSellerInfo={setBestSellerInfo}/>
                 </Route>
                 <Route exact path="/favorites">
                     <Feed user={user} handleLogout={handleLogout} setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText} books={books} setBooks={setBooks}/>

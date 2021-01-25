@@ -28,7 +28,7 @@ function BookSearch({setResults, results, setSearchText, searchText, handleAddBo
     }  
     return (  
         <div>
-            {console.log('Hello')}
+        
         <form onSubmit={handleSubmit}>                    
             
             <div className="card">  

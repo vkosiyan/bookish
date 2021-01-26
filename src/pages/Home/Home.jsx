@@ -15,13 +15,13 @@ export default function Home({user, handleLogout, setResults, results, searchTex
         <div>
 
       <PageHeader user={user} handleLogout={handleLogout} setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText}/>
-      <NYTimesInfo bestSellerInfo={bestSellerInfo} />
+      <NYTimesInfo bestSellerInfo={bestSellerInfo}/>
      
        
 
-      <Container textAlign='center'>
+    
        <PageFooter/>
-       </Container>
+      
 
        </div>
     )

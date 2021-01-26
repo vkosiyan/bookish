@@ -8,8 +8,7 @@ import userService from '../../utils/userService'
 import Home from '../Home/Home';
 import BookInfo from '../BookInfo/BookInfo';
 import SearchResults from '../SearchResults/SearchResults';
-import Feed from '../Feed/Feed';
-import * as booksAPI from '../../utils/bookService';
+
 
 
 function App() {
@@ -107,9 +106,7 @@ function App() {
                 </Route>
                 <Route exact path="/:username">
                   <ProfilePage user={user} handleLogout={handleLogout} setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText}/>
-                </Route>
-            
-                
+                </Route>                            
                 <Route path="/books/:bookid"
             render={(routerProps) => (
               <BookInfo {...routerProps} user={user} handleLogout={handleLogout} searchText={searchText} setSearchText={setSearchText} user={user} currentBook={currentBook} setCurrentBook={setCurrentBook} setResults={setResults} results={results} />

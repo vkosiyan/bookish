@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { Link } from 'react-router-dom';
 import { Grid, Image, Rating, Divider, Container, Header, Button, Segment } from 'semantic-ui-react'
-import AddToFavorites from "../../components/AddToFavorites/AddToFavorites";
 import PageFooter from "../../components/Footer/Footer";
 import PageHeader from "../../components/Header/Header";
 
@@ -41,13 +40,15 @@ function Book(props){
       setBookRating(bookRating)
       console.log('VOLUME INFO',volumeInfo)
 
-    // console.log('TYPE OF', volumeInfo.authors.length)
-    volumeInfo.authors < 2 ? 
-    bookAuthors = ' ' + volumeInfo.authors : 
-    bookAuthors = ' ' + [volumeInfo.authors[0] +                     
-                   Object.keys(volumeInfo.authors).slice(1).map((author, idx) => (  
-                     ', ' + volumeInfo.authors[author]
-                     ))]
+    if(!volumeInfo.authors){
+      bookAuthors = <i>Author Unlisted</i>
+    } else if(volumeInfo.authors < 2){
+      bookAuthors = ' ' + volumeInfo.authors
+    } else {bookAuthors = ' ' + [volumeInfo.authors[0] +                     
+    Object.keys(volumeInfo.authors).slice(1).map((author, idx) => (  
+      ', ' + volumeInfo.authors[author]
+      ))] }
+
                      setCurrentBookAuthors(bookAuthors)               
     }
     makeApiCall()
@@ -59,8 +60,8 @@ function Book(props){
       <div>
 
     <PageHeader user={props.user} handleLogout={props.handleLogout} setResults={props.setResults} results={props.results} searchText={props.searchText} setSearchText={props.setSearchText} />
-
-    <Grid celled style={{ marginTop: '15em' }}> 
+    <Container fluid className="ContainerBody" style={{ marginTop: '15em' }}>
+    <Grid celled> 
     <Grid.Row>
 
       <Grid.Column>
@@ -81,7 +82,8 @@ function Book(props){
     </Grid.Row>
 
     </Grid>      
-   
+   </Container>
+
     <PageFooter/>
       </div>
     )

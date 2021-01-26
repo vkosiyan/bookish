@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import axios from 'axios';  
 import { Grid, Image, Rating, Divider } from 'semantic-ui-react'
 import { Link, useHistory } from 'react-router-dom'
-import AddToFavorites from "../AddToFavorites/AddToFavorites";
-
 
 function BookSearch({setResults, results, searchText}) {      
 

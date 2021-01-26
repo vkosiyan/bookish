@@ -5,6 +5,7 @@ import userService from '../../utils/userService';
 import { useHistory, Link } from 'react-router-dom';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 
+
 export default function LoginPage(props){
     const [invalidForm, setValidForm] = useState(false);
     const [error, setError ]          = useState('')
@@ -44,7 +45,8 @@ export default function LoginPage(props){
           <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
             <Grid.Column style={{ maxWidth: 450 }}>
             <Header as='h2' color='teal' textAlign='center'>
-            <Image src='https://i.imgur.com/s4LrnlU.png' /> Log-in to your account
+            <Image src='../signinlogo.png' /> 
+            Log-in to your account
             </Header>
             <Form  autoComplete="off"  onSubmit={handleSubmit}>
                <Segment stacked>

@@ -14,13 +14,17 @@ import {
 
 export default function PageFooter({user, handleLogout, setResults, results, book, setBook}){      
     const footerStyle = {
+
+        position: 'absolute',
+
+        // width: '100%',
         backgroundColor: '#A6A6A6',
         border: '1px solid #ddd',
         boxShadow: '0px 3px 5px rgba(0, 0, 0, 0.2)',
-        margin: '5em 0em 0em', 
-        padding: '5em 0em',
-        borderTop: '1px solid #ddd',
+        margin: '5em 0em 0em',
 
+        borderTop: '1px solid #ddd',
+        marginTop: '0em',
 
       }
 

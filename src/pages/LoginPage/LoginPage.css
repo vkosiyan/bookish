@@ -1,0 +1,11 @@
+body {
+    background-image: url("LoginBackground.png");
+    background-color: grey;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    color: white;
+    padding: 40px;
+    font-family: Arial;
+    text-align: center;
+  }

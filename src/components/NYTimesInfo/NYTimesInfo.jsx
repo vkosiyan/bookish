@@ -1,8 +1,5 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { Segment, Container, Grid, Divider, Rating, Image, Card } from 'semantic-ui-react'
-import PageFooter from '../../components/Footer/Footer';
-import PageHeader from '../../components/Header/Header';
-import axios from 'axios';  
 import { Link, useHistory } from 'react-router-dom'
 
 
@@ -14,7 +11,7 @@ function NYTimesInfo({ bestSellerInfo }) {
 
   return (
     <div>
-        <Container fluid style={{ marginTop: '15em' }}>
+        <Container fluid className="ContainerBody" style={{ marginTop: '15em' }}>
         <h1>The New York Times Best Sellers of 2020 </h1>
         <Card.Group itemsPerRow={5}>
     { Object.keys(bestSellerInfo).map((item, idx) => (  

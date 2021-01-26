@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.ContainerBody {
+  background-color: white;
+  color: black;
+  min-height: 500px;
+  padding-top: 30px;
+  padding-bottom: 50px;
+  padding-left: 10px;
+  padding-right: 10px;
+  align-content: center;
+  
+}

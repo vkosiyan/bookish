@@ -67,7 +67,7 @@ function App() {
                 id: result.items[0].id,
                 title: result.items[0].volumeInfo.title,
                 authors: result.items[0].volumeInfo.authors,
-                imageLink: result.items[0].volumeInfo.imageLinks.thumbnail,
+                imageLink: result.items[0].volumeInfo.imageLinks ? result.items[0].volumeInfo.imageLinks.thumbnail : 'undefined',
                 averageRating: result.items[0].volumeInfo.averageRating,
                 description: result.items[0].volumeInfo.description
             }) : console.log('pass')

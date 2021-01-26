@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useLayoutEffect} from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
 import SignupPage from '../SignupPage/SignupPage';
@@ -16,7 +16,6 @@ function App() {
 
   const [books, setBooks] = useState([])
 
-
   function handleSignUpOrLogin(){
     setUser(userService.getUser()) // getting the user from localstorage decoding the jwt
   }
@@ -25,21 +24,6 @@ function App() {
     setUser({user: null})
   }
 
-  async function handleAddBook(book){
-
-    const data = await booksAPI.create(book);
-
-    // to check to make sure this is working
-    console.log(data, ' I AM data')
-    // after this we'll want to update state
-    // after we get back our new post
-    // data is the response from our create function in controllers/books
-    // update the state
-
-    setBooks([data.book,  ...books])
-    // to conifrm this check the devtools for your feed component
-    
-}
   //// HOOKS ////
   const [results, setResults] = useState([]);
   const[bestSellerInfo, setBestSellerInfo] = useState([])
@@ -49,6 +33,59 @@ function App() {
   const [user, setUser] = useState(userService.getUser()) // getUser decodes our JWT token, into a javascript object
   // this object corresponds to the jwt payload which is defined in the server signup or login function that looks like 
   // this  const token = createJWT(user); // where user was the document we created from mongo
+
+  const listURL = "https://api.nytimes.com/svc/books/v3/lists/best-sellers/2020.json?api-key=";
+  const nyTimesApiKey = 'YF4jFW7MyybdTuz3s6uLGAoUcFZqULxg';
+  const googleApiKey = 'AIzaSyB2MR9Aytx1NBrLhcns0k2UAd0RfsemqlE';    
+  //////// API KEYS ////
+
+  const bestSellerNoIsbnInfoArray = [];
+  const bestSellerInfoArray = [ ];
+  let isbnArray = [];            
+
+  useLayoutEffect(() => {
+      const url = `${listURL}${nyTimesApiKey}`   
+
+      const makeApiCall = async () => {
+        const res  =  await fetch(url)
+        const json = await res.json()
+        const bestSellingBooks = json.results
+        
+        {bestSellingBooks.map((book, idx) => (
+          book.isbns[0] ? isbnArray.push(book.isbns[0].isbn10) : bestSellerNoIsbnInfoArray.push(book) 
+          ))} 
+
+        setBestSellerBooks(bestSellingBooks)
+
+        {isbnArray.map((isbnNum, idx) => (           
+
+          fetch("https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbnNum)
+          .then(function (res) {
+           return res.json();
+         })
+          .then(function (result) {        
+           result.items ? bestSellerInfoArray.push({
+                id: result.items[0].id,
+                title: result.items[0].volumeInfo.title,
+                authors: result.items[0].volumeInfo.authors,
+                imageLink: result.items[0].volumeInfo.imageLinks.thumbnail,
+                averageRating: result.items[0].volumeInfo.averageRating,
+                description: result.items[0].volumeInfo.description
+            }) : console.log('pass')
+
+         })           
+        
+       ))} 
+
+       setBestSellerInfo(bestSellerInfoArray)
+      
+      }
+      
+      makeApiCall()       
+  
+  },[])
+
+
   return (
     <div className="App">
       <Switch>
@@ -63,16 +100,11 @@ function App() {
             <>
                <Switch>
                 <Route exact path="/">
-                    <Home user={user} handleLogout={handleLogout} setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText} bestSellerBooks={bestSellerBooks} setBestSellerBooks={setBestSellerBooks} bestSellerInfo={bestSellerInfo} setBestSellerInfo={setBestSellerInfo}/>
+                    <Home user={user} handleLogout={handleLogout} setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText} bestSellerInfo={bestSellerInfo} />
                 </Route>
-                <Route exact path="/favorites">
-                    <Feed user={user} handleLogout={handleLogout} setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText} books={books} setBooks={setBooks}/>
-                </Route>
-
                 <Route exact path="/search">
                     <SearchResults user={user} handleLogout={handleLogout} setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText}/>
                 </Route>
-
                 <Route exact path="/:username">
                   <ProfilePage user={user} handleLogout={handleLogout} setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText}/>
                 </Route>
@@ -80,7 +112,7 @@ function App() {
                 
                 <Route path="/books/:bookid"
             render={(routerProps) => (
-              <BookInfo {...routerProps} user={user} handleLogout={handleLogout} searchText={searchText} setSearchText={setSearchText} user={user} currentBook={currentBook} setCurrentBook={setCurrentBook} setResults={setResults} results={results} handleAddBook={handleAddBook}/>
+              <BookInfo {...routerProps} user={user} handleLogout={handleLogout} searchText={searchText} setSearchText={setSearchText} user={user} currentBook={currentBook} setCurrentBook={setCurrentBook} setResults={setResults} results={results} />
             )}
           />
           </Switch>

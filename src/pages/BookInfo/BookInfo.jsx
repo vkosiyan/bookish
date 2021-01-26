@@ -4,12 +4,11 @@ import { Grid, Image, Rating, Divider, Container, Header, Button, Segment } from
 import AddToFavorites from "../../components/AddToFavorites/AddToFavorites";
 import PageFooter from "../../components/Footer/Footer";
 import PageHeader from "../../components/Header/Header";
-import * as bookService from '../../utils/bookService';
-
 
 const bookURL = "https://www.googleapis.com/books/v1/volumes/";
 
 function Book(props){  
+  const [bookComments, setBookComments] = useState([])
    const [bookImage, setCurrentBookImage] = useState(null)
    const [smallBookImage, setSmallBookImage] = useState(null)
    const [bookAuthors, setCurrentBookAuthors] = useState(null)
@@ -17,20 +16,6 @@ function Book(props){
    const [bookId, setBookId] = useState(null)
    const [bookRating, setBookRating] = useState(null)
 
-   const [error, setError ] = useState('')
-   const [state, setState] = useState({
-     id: props.match.params.bookid,
-    })
-function handleSubmit(e){
-    e.preventDefault()
-    
-    bookService.create(state);
-        // Route to wherever you want!
-        // props.handleAddBook() // 
-    }
-
-
-   // COMPONENTDIDMOUNT..runs only once when Component mounts
   useEffect(() => {
     const bookid = props.match.params.bookid;
     const url = `${bookURL}${bookid}`
@@ -44,17 +29,26 @@ function handleSubmit(e){
 
       const bookImage = volumeInfo.imageLinks.small
       const smallBookImage = volumeInfo.imageLinks.thumbnail
-      const bookAuthors = volumeInfo.authors
+      let bookAuthors = '';
       const bookDescription = volumeInfo.description
       const bookRating = volumeInfo.averageRating
       props.setCurrentBook(volumeInfo)
       setCurrentBookImage(bookImage)
       setSmallBookImage(smallBookImage)
-      setCurrentBookAuthors(bookAuthors)
+      
       setCurrentBookDescription(bookDescription)
       setBookId(bookid)
       setBookRating(bookRating)
+      console.log('VOLUME INFO',volumeInfo)
 
+    // console.log('TYPE OF', volumeInfo.authors.length)
+    volumeInfo.authors < 2 ? 
+    bookAuthors = ' ' + volumeInfo.authors : 
+    bookAuthors = ' ' + [volumeInfo.authors[0] +                     
+                   Object.keys(volumeInfo.authors).slice(1).map((author, idx) => (  
+                     ', ' + volumeInfo.authors[author]
+                     ))]
+                     setCurrentBookAuthors(bookAuthors)               
     }
     makeApiCall()
     
@@ -65,45 +59,28 @@ function handleSubmit(e){
       <div>
 
     <PageHeader user={props.user} handleLogout={props.handleLogout} setResults={props.setResults} results={props.results} searchText={props.searchText} setSearchText={props.setSearchText} />
-    {/* <Segment raised>
-    <Container fluid  style={{ marginTop: '15em' }}>
-      
-      
-      <Image src={bookImage !== undefined ? bookImage : smallBookImage} floated='left'
-    size='medium' style={{ margin: '2em 2em 2em 2em' }} alt='Image Unavailable'/>
-    <Header as='h2'>Title: {props.currentBook.title} </Header>
-      <Header as='h4' style={{ marginTop: '-1em' }}>By {bookAuthors}</Header>
-      <p floated='right' style={{ marginTop: '1em' }} >
-       
-      <Rating maxRating={5} defaultRating={bookRating ? bookRating : 0} icon='star' />
-      {typeof bookRating}
-        <div className="book">{bookDescription}</div>
-        <button class="ui primary button" onClick={() => props.history.push('/')}>Back</button>
-        <Link to='/'>Home</Link>
-      </p>
-    </Container>
-    </Segment> */}
 
-    
     <Grid celled style={{ marginTop: '15em' }}> 
     <Grid.Row>
 
       <Grid.Column>
-      <Image src={bookImage !== undefined ? bookImage : smallBookImage} floated='left'
-    size='medium' style={{ margin: '2em 2em 2em 2em' }} alt='Image Unavailable'/>
-            <Header as='h1'>Title: {props.currentBook.title} </Header>
+      <Image src={bookImage !== undefined ? bookImage : smallBookImage} floated='left' size='medium' style={{ margin: '2em 2em 2em 2em' }} alt='Image Unavailable'/>
+      <Header as='h1'>Title: {props.currentBook.title} </Header>
       
-        <div className="book">Author: {bookAuthors}</div>
-        
-        <div className="book">Description: {bookDescription}</div>
-        <button onClick={() => props.history.push('/')}>Back</button>
-        <Link to='/'>Home</Link>
-        <AddToFavorites currentBook={props.currentBook} bookId={bookId} bookImage={bookImage}/>
-        {/* <button class="ui button" onClick={handleSubmit} >Add to Favorites</button> */}
+        <h2 style={{ marginTop: '-.5em' }}>By {bookAuthors}</h2>
+
+        <Rating maxRating={5} defaultRating={bookRating ? bookRating : 0} icon='star' />
+        {bookRating}
+        <div className="book" style={{ marginTop: '1em' }}>{bookDescription}</div>
+        <Grid.Row style={{ marginTop: '8em' }}>
+         <button onClick={() => props.history.push('/')} class="ui primary button">Back</button>
+        <Link to='/'> <button onClick={() => props.history.push('/')} class="ui primary button">Home</button></Link>
+    </Grid.Row>
+
       </Grid.Column>
     </Grid.Row>
-    </Grid>
-      
+
+    </Grid>      
    
     <PageFooter/>
       </div>

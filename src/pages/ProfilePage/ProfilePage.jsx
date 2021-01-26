@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Segment, Dimmer, Loader, Container } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 import userService from '../../utils/userService';
 import ProfileBio from '../../components/ProfileBio/ProfileBio';
 import PageHeader from '../../components/Header/Header';

@@ -1,5 +1,12 @@
 body {
-    background-image: url("LoginBackground.png");
+    background-image: url("Bgimage.png");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+
+    background-size: cover;
     background-color: grey;
     background-repeat: no-repeat;
     background-attachment: fixed;

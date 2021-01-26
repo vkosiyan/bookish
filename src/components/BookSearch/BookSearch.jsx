@@ -43,7 +43,7 @@ function BookSearch({setResults, results, searchText}) {
                                 <Image src={book.volumeInfo.imageLinks !== undefined ? book.volumeInfo.imageLinks.thumbnail : ''} alt={book.volumeInfo.title}/>
                             </Grid.Column>
                             <Grid.Column width={13}>
-                            <h3>{book.volumeInfo.title}</h3>
+                            <h2>{book.volumeInfo.title}</h2>
                             <h4>By {book.volumeInfo.authors < 2 ? ' ' + book.volumeInfo.authors : [book.volumeInfo.authors ? ' ' + [book.volumeInfo.authors[0] +                     
                                         Object.keys(book.volumeInfo.authors).slice(1).map((author, idx) => (  
                                             ', ' + book.volumeInfo.authors[author]

@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from "react";
 import { Link } from 'react-router-dom';
-import { Grid, Image, Rating, Divider, Container, Header, Button, Segment } from 'semantic-ui-react'
+import { Grid, Image, Container, Header} from 'semantic-ui-react'
 import PageFooter from "../../components/Footer/Footer";
 import PageHeader from "../../components/Header/Header";
-
+import './BookInfo.css';
 const bookURL = "https://www.googleapis.com/books/v1/volumes/";
 
 function Book(props){  
@@ -14,6 +14,9 @@ function Book(props){
    const [bookDescription, setCurrentBookDescription] = useState(null)
    const [bookId, setBookId] = useState(null)
    const [bookRating, setBookRating] = useState(null)
+   const [volumeInfo, setVolumeInfo] = useState(null)
+   const [bookCategories, setBookCategories] = useState(null)
+
 
   useEffect(() => {
     const bookid = props.match.params.bookid;
@@ -28,16 +31,19 @@ function Book(props){
 
       const bookImage = volumeInfo.imageLinks.small
       const smallBookImage = volumeInfo.imageLinks.thumbnail
-      let bookAuthors = '';
+      let bookAuthors = ''
+      let bookCategories = ''
       const bookDescription = volumeInfo.description
+      const cleanBookDescription = bookDescription.replace(/<[^>]+>/g, '')
       const bookRating = volumeInfo.averageRating
       props.setCurrentBook(volumeInfo)
       setCurrentBookImage(bookImage)
       setSmallBookImage(smallBookImage)
       
-      setCurrentBookDescription(bookDescription)
+      setCurrentBookDescription(cleanBookDescription)
       setBookId(bookid)
       setBookRating(bookRating)
+      setVolumeInfo(volumeInfo)
       console.log('VOLUME INFO',volumeInfo)
 
     if(!volumeInfo.authors){
@@ -49,12 +55,25 @@ function Book(props){
       ', ' + volumeInfo.authors[author]
       ))] }
 
-                     setCurrentBookAuthors(bookAuthors)               
+     setCurrentBookAuthors(bookAuthors)
+     
+     if(!volumeInfo.categories){
+      bookCategories = <i>Category Unlisted</i>
+    } else if(volumeInfo.categories < 2){
+      bookCategories = ' ' + volumeInfo.categories
+    } else {bookCategories = ' ' + [volumeInfo.categories[0] +                     
+    Object.keys(volumeInfo.categories).slice(1).map((category, idx) => (  
+      ' ' + volumeInfo.categories[category]
+      ))] }
+
+      setBookCategories(bookCategories)
+     
     }
     makeApiCall()
     
 
   },[])
+  
 
     return (
       <div>
@@ -66,13 +85,16 @@ function Book(props){
 
       <Grid.Column>
       <Image src={bookImage !== undefined ? bookImage : smallBookImage} floated='left' size='medium' style={{ margin: '2em 2em 2em 2em' }} alt='Image Unavailable'/>
-      <Header as='h1'>Title: {props.currentBook.title} </Header>
+      <Container textAlign='justified'>
+      <Header as='h2'>Title: {props.currentBook.title} </Header>
       
-        <h2 style={{ marginTop: '-.5em' }}>By {bookAuthors}</h2>
-
-        <Rating maxRating={5} defaultRating={bookRating ? bookRating : 0} icon='star' />
-        {bookRating}
+        <h3 style={{ marginTop: '-.5em', color: 'grey' }}>By {bookAuthors}</h3>
+        <h4 style={{ marginTop: '-.5em', color: 'grey' }}>{bookCategories}</h4>
+        <h3 style={{ marginTop: '-.5em'}}> Average Rating: {bookRating}</h3>
+      
+       
         <div className="book" style={{ marginTop: '1em' }}>{bookDescription}</div>
+        </Container>
         <Grid.Row style={{ marginTop: '8em' }}>
          <button onClick={() => props.history.push('/')} class="ui primary button">Back</button>
         <Link to='/'> <button onClick={() => props.history.push('/')} class="ui primary button">Home</button></Link>

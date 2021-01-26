@@ -24,6 +24,25 @@
   color: white;
 }
 
+body {
+  background-image: url("Appbg.png");
+
+/* Full height */
+height: 100%;
+
+/* Center and scale the image nicely */
+
+  background-size: cover;
+  background-color: grey;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  color: white;
+  padding: 40px;
+  font-family: Arial;
+  text-align: center;
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -40,11 +59,12 @@
 .ContainerBody {
   background-color: white;
   color: black;
-  min-height: 500px;
+  min-height: 700px;
   padding-top: 30px;
   padding-bottom: 50px;
   padding-left: 10px;
   padding-right: 10px;
   align-content: center;
-  
+  width: 100%;  
 }
+

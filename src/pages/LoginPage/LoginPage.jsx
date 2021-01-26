@@ -4,9 +4,11 @@ import ErrorMessage from '../../components/ErrorMessage/ErrorMessage'
 import userService from '../../utils/userService';
 import { useHistory, Link } from 'react-router-dom';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import './LoginPage.css';
 
 
 export default function LoginPage(props){
+    const className = 'login';
     const [invalidForm, setValidForm] = useState(false);
     const [error, setError ]          = useState('')
     const [state, setState]       = useState({
@@ -42,17 +44,20 @@ export default function LoginPage(props){
 
     return (
         <>
-          <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+          
+          <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>            
             <Grid.Column style={{ maxWidth: 450 }}>
+              <Grid.Row>
+                <Image src={require("./Signinlogo.png")} size='small' centered/> 
+              </Grid.Row>
             <Header as='h2' color='teal' textAlign='center'>
-            <Image src='../signinlogo.png' /> 
+
             Log-in to your account
             </Header>
             <Form  autoComplete="off"  onSubmit={handleSubmit}>
                <Segment stacked>
                   <Form.Input
-                    type="email"
-                   
+                    type="email"                   
                     name="email"
                     placeholder="email"
                     value={ state.email}

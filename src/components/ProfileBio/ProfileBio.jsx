@@ -13,10 +13,13 @@ export default function ProfileBio({user}) {
       </Grid.Column>
       <Grid.Column textAlign="left">
         <Segment vertical>
-           <h3>{user.username}</h3>
+           <h3>Username: {user.username}</h3>
         </Segment>
         <Segment>
            <span> Bio: {user.bio}</span>
+        </Segment>
+        <Segment>
+           <span> Email: {user.email}</span>
         </Segment>
           
       </Grid.Column>

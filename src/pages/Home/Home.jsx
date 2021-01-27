@@ -20,13 +20,11 @@ export default function Home({user, handleLogout, setResults, results, searchTex
         >
           Search
         </Menu.Item>
-
         <Menu.Item
           name='bestsellers'
         >
           <Link to="/bestsellers">Browse Best Sellers</Link>
         </Menu.Item>
-
         <Menu.Item
           name='profile'
           position='right'
@@ -39,12 +37,9 @@ export default function Home({user, handleLogout, setResults, results, searchTex
                     <Dropdown.Item><Link to='' onClick={handleLogout}>Logout</Link></Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
+      </Menu>   
 
-      </Menu>
-   
-
-        <Segment raised className='Search'>
-        
+        <Segment raised className='Search'>        
 
           <Grid centered>
               <Grid.Row centered style={{ marginTop: '-4em' }}>

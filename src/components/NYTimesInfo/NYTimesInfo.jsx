@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Image, Card, Header } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
+import PageHeader from '../Header/Header';
 
 
 function NYTimesInfo({ bestSellerInfo }) {  
@@ -8,6 +9,7 @@ function NYTimesInfo({ bestSellerInfo }) {
 
   return (
     <div>
+      <PageHeader />
       <Container fluid className="ContainerBody" style={{ marginTop: '15em' }}>
       <Header as='h1'>The New York Times Best Sellers of 2020</Header>
         <Card.Group itemsPerRow={4}>

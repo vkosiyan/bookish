@@ -9,6 +9,7 @@ import Home from '../Home/Home';
 import BookInfo from '../BookInfo/BookInfo';
 import SearchResults from '../SearchResults/SearchResults';
 import BestSellers from '../BestSellerLists/BestSellerLists';
+import BestSellerListInfo from '../../components/BestSellerListInfo/BestSellerListInfo';
 
 function App() {
 
@@ -29,17 +30,19 @@ function App() {
   // this object corresponds to the jwt payload which is defined in the server signup or login function that looks like 
   // this  const token = createJWT(user); // where user was the document we created from mongo
 
-  const listURL = "https://api.nytimes.com/svc/books/v3/lists/best-sellers/2020.json?api-key=";
-  const nyTimesApiKey = 'YF4jFW7MyybdTuz3s6uLGAoUcFZqULxg';
+  const listURL = "https://api.nytimes.com/svc/books/v3/lists/best-sellers/2020";
+  const list2020BestURL = "https://api.nytimes.com/svc/books/v3/lists/best-sellers/2020";
+  const nyTimesApiKey = '.json?api-key=YF4jFW7MyybdTuz3s6uLGAoUcFZqULxg';
   // const googleApiKey = 'AIzaSyB2MR9Aytx1NBrLhcns0k2UAd0RfsemqlE';    
   //////// API KEYS ////
 
   const bestSellerNoIsbnInfoArray = [];
   const bestSellerInfoArray = [];
+  let url = '';
   let isbnArray = [];            
 
   useEffect(() => {
-      const url = `${listURL}${nyTimesApiKey}`   
+      url = `${list2020BestURL}${nyTimesApiKey}`
 
       const makeApiCall = async () => {
         const res  =  await fetch(url)
@@ -49,8 +52,6 @@ function App() {
         {bestSellingBooks.map((book, idx) => (
           book.isbns[0] ? isbnArray.push(book.isbns[0].isbn10) : bestSellerNoIsbnInfoArray.push(book) 
           ))} 
-
-
 
         {isbnArray.map((isbnNum, idx) => (           
 
@@ -99,7 +100,8 @@ function App() {
                 </Route>
                 <Route exact path="/bestsellers">
                     <BestSellers user={user} handleLogout={handleLogout} setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText} bestSellerInfo={bestSellerInfo} />
-                </Route>
+                </Route>              
+                
                 <Route exact path="/search">
                     <SearchResults user={user} handleLogout={handleLogout} setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText}/>
                 </Route>
@@ -111,6 +113,9 @@ function App() {
               <BookInfo {...routerProps} user={user} handleLogout={handleLogout} searchText={searchText} setSearchText={setSearchText} currentBook={currentBook} setCurrentBook={setCurrentBook} setResults={setResults} results={results} />
             )}
           />
+          <Route exact path="/listinfo/:list_name_encoded" render={(routerProps) => (
+                    <BestSellerListInfo {...routerProps} user={user} handleLogout={handleLogout} setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText} bestSellerInfo={bestSellerInfo}/>
+                    )} />
           </Switch>
             </>
             :

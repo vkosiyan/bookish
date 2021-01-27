@@ -23,7 +23,7 @@ export default function Home({user, handleLogout, setResults, results, searchTex
         <Menu.Item
           name='bestsellers'
         >
-          <Link to="/bestsellers">Browse Best Sellers</Link>
+          <Link to="/bestsellerslist">Browse Best Sellers</Link>
         </Menu.Item>
         <Menu.Item
           name='profile'

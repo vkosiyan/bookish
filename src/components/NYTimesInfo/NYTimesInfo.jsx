@@ -9,8 +9,6 @@ function NYTimesInfo({ bestSellerInfo }) {
 
   return (
     <div>
-      <PageHeader />
-      <Container fluid className="ContainerBody" style={{ marginTop: '15em' }}>
       <Header as='h1'>The New York Times Best Sellers of 2020</Header>
         <Card.Group itemsPerRow={4}>
           {Object.keys(bestSellerInfo).map((item, idx) => (
@@ -40,7 +38,6 @@ function NYTimesInfo({ bestSellerInfo }) {
           ))
           }
         </Card.Group>
-      </Container>
 
     </div>
 

@@ -10,6 +10,7 @@ import BookInfo from '../BookInfo/BookInfo';
 import SearchResults from '../SearchResults/SearchResults';
 import BestSellers from '../BestSellerLists/BestSellerLists';
 import BestSellerListInfo from '../../components/BestSellerListInfo/BestSellerListInfo';
+import BestSellerList from '../../components/BestSellerList/BestSellerList';
 
 function App() {
 
@@ -100,7 +101,10 @@ function App() {
                 </Route>
                 <Route exact path="/bestsellers">
                     <BestSellers user={user} handleLogout={handleLogout} setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText} bestSellerInfo={bestSellerInfo} />
-                </Route>              
+                </Route>  
+                <Route exact path="/bestsellerslist">
+                    <BestSellerList user={user} handleLogout={handleLogout} setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText} bestSellerInfo={bestSellerInfo} />
+                </Route>                
                 
                 <Route exact path="/search">
                     <SearchResults user={user} handleLogout={handleLogout} setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText}/>

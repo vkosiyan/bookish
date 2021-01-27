@@ -48,7 +48,7 @@ export default function LoginPage(props){
           <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>            
             <Grid.Column style={{ maxWidth: 450 }}>
               <Grid.Row>
-                <Image src="/signinlogo.png" size='small' centered/> 
+                <Image src={require("../Home/signinlogo.png")}  size='small' centered/> 
               </Grid.Row>
             <Header as='h2' color='teal' textAlign='center'>
 

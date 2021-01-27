@@ -76,7 +76,7 @@ export default function SignUpPage(props){
         <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
           <Grid.Row>
-                <Image src={require("./SignUplogo.png")} size='small' centered/> 
+                <Image src="https://i.ibb.co/mb0Nv2c/Mauve-Books-Media-Lifestyle-Logo-1.png" size='small' centered/> 
               </Grid.Row>
               <Header as='h2' color='teal' textAlign='center'>
                Sign Up    

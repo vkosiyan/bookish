@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import './LoginPage.css';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage'
 import userService from '../../utils/userService';
 import { useHistory, Link } from 'react-router-dom';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
-import './LoginPage.css';
-
 
 export default function LoginPage(props){
     const className = 'login';
@@ -48,7 +45,7 @@ export default function LoginPage(props){
           <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>            
             <Grid.Column style={{ maxWidth: 450 }}>
               <Grid.Row>
-                <Image src={require("../Home/signinlogo.png")}  size='small' centered/> 
+                <Image src="https://i.ibb.co/mb0Nv2c/Mauve-Books-Media-Lifestyle-Logo-1.png" size='small' centered/> 
               </Grid.Row>
             <Header as='h2' color='teal' textAlign='center'>
 

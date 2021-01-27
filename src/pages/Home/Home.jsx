@@ -42,12 +42,12 @@ export default function Home({user, handleLogout, setResults, results, searchTex
         <Segment raised className='Search'>        
 
           <Grid centered>
-              <Grid.Row centered style={{ marginTop: '-4em' }}>
+              <Grid.Row centered style={{ marginTop: '-8em' }}>
           
-              <Image src={require("./SearchLogo.png")} centered/> 
+              <Image src="https://i.ibb.co/VVdZzQ0/Search-Bar-set-Results-set-Results-results-results-search-Text-search-Text-set-Search-Text-set-Searc.png" height="275px" centered/> 
               
               </Grid.Row>
-              <Grid.Row centered style={{ marginTop: '-8em' }}>
+              <Grid.Row centered style={{ marginTop: '-5em' }}>
                   
               <SearchBar setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText}/>
                   

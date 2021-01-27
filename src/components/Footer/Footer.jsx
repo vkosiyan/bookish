@@ -34,7 +34,7 @@ export default function PageFooter(){
         </Grid>
 
         <Divider inverted section />
-        <Image src={require("./footerlogo.png")} size='small' centered/> 
+        <Image src="https://i.ibb.co/mb0Nv2c/Mauve-Books-Media-Lifestyle-Logo-1.png" size='small' centered/> 
         <List horizontal inverted divided link size='small'>
           <List.Item>
           © 2021 Bookish, Inc

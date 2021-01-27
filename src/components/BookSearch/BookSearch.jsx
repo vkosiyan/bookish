@@ -1,4 +1,4 @@
-import React, { useState } from "react";  
+import React from "react";  
 import axios from 'axios';  
 import { Grid, Image, Rating, Divider } from 'semantic-ui-react'
 import { Link, useHistory } from 'react-router-dom'
@@ -7,8 +7,6 @@ function BookSearch({setResults, results, searchText}) {
 
     const apiKey = 'AIzaSyB2MR9Aytx1NBrLhcns0k2UAd0RfsemqlE';
     const history = useHistory();
-    let bookAuthors = '';
-
 
     function handleSubmit(event) {  
         console.log("I am event", event)

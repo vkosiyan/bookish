@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container } from 'semantic-ui-react'
 import PageFooter from '../../components/Footer/Footer';
 import PageHeader from '../../components/Header/Header';
 import BookSearch from '../../components/BookSearch/BookSearch';
 
 export default function SearchResults({user, handleLogout, setResults, results, searchText, setSearchText}){  
-    const [books, setBooks] = useState([])
 
     return (
         <div>       
@@ -16,9 +15,9 @@ export default function SearchResults({user, handleLogout, setResults, results, 
                 <BookSearch setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText} />
             </Container>       
 
-            <Container textAlign='center'>
+           
                  <PageFooter />
-            </Container>
+          
 
        </div>
     )

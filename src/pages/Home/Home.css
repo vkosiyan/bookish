@@ -1,0 +1,18 @@
+body{
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    background-image: url("SearchBg.png");
+  }
+
+.Search {
+    display: flex;
+    height: 50vh;
+    width: 100vh;
+    position: absolute;
+    top: 50%;      
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    justify-content: center; 
+}

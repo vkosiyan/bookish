@@ -7,7 +7,6 @@ import './BookInfo.css';
 const bookURL = "https://www.googleapis.com/books/v1/volumes/";
 
 function Book(props){  
-  const [bookComments, setBookComments] = useState([])
    const [bookImage, setCurrentBookImage] = useState(null)
    const [smallBookImage, setSmallBookImage] = useState(null)
    const [bookAuthors, setCurrentBookAuthors] = useState(null)

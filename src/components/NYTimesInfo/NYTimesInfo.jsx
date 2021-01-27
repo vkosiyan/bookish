@@ -1,11 +1,9 @@
 import React, { useLayoutEffect } from 'react';
 import { Container, Image, Card, Header } from 'semantic-ui-react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
-function NYTimesInfo({ bestSellerInfo }) {
-
-  
+function NYTimesInfo({ bestSellerInfo }) {  
 
   useLayoutEffect(() => {
 
@@ -15,7 +13,7 @@ function NYTimesInfo({ bestSellerInfo }) {
     <div>
       <Container fluid className="ContainerBody" style={{ marginTop: '15em' }}>
       <Header as='h1'>The New York Times Best Sellers of 2020</Header>
-        <Card.Group itemsPerRow={5}>
+        <Card.Group itemsPerRow={4}>
           {Object.keys(bestSellerInfo).map((item, idx) => (
             <Card style={{ width: '200px' }}>
               <Image src={bestSellerInfo[item].imageLink !== undefined ? bestSellerInfo[item].imageLink : ''} alt={bestSellerInfo[item].title} wrapped ui={false} />

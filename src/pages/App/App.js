@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useLayoutEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
 import SignupPage from '../SignupPage/SignupPage';
@@ -8,12 +8,9 @@ import userService from '../../utils/userService'
 import Home from '../Home/Home';
 import BookInfo from '../BookInfo/BookInfo';
 import SearchResults from '../SearchResults/SearchResults';
-
-
+import BestSellers from '../BestSellerLists/BestSellerLists';
 
 function App() {
-
-  const [books, setBooks] = useState([])
 
   function handleSignUpOrLogin(){
     setUser(userService.getUser()) // getting the user from localstorage decoding the jwt
@@ -26,7 +23,6 @@ function App() {
   //// HOOKS ////
   const [results, setResults] = useState([]);
   const[bestSellerInfo, setBestSellerInfo] = useState([])
-  const [bestSellerBooks, setBestSellerBooks] = useState([])  
   const [searchText, setSearchText] = useState(""); 
   const [currentBook, setCurrentBook] = useState(""); 
   const [user, setUser] = useState(userService.getUser()) // getUser decodes our JWT token, into a javascript object
@@ -35,14 +31,14 @@ function App() {
 
   const listURL = "https://api.nytimes.com/svc/books/v3/lists/best-sellers/2020.json?api-key=";
   const nyTimesApiKey = 'YF4jFW7MyybdTuz3s6uLGAoUcFZqULxg';
-  const googleApiKey = 'AIzaSyB2MR9Aytx1NBrLhcns0k2UAd0RfsemqlE';    
+  // const googleApiKey = 'AIzaSyB2MR9Aytx1NBrLhcns0k2UAd0RfsemqlE';    
   //////// API KEYS ////
 
   const bestSellerNoIsbnInfoArray = [];
-  const bestSellerInfoArray = [ ];
+  const bestSellerInfoArray = [];
   let isbnArray = [];            
 
-  useLayoutEffect(() => {
+  useEffect(() => {
       const url = `${listURL}${nyTimesApiKey}`   
 
       const makeApiCall = async () => {
@@ -54,7 +50,7 @@ function App() {
           book.isbns[0] ? isbnArray.push(book.isbns[0].isbn10) : bestSellerNoIsbnInfoArray.push(book) 
           ))} 
 
-        setBestSellerBooks(bestSellingBooks)
+
 
         {isbnArray.map((isbnNum, idx) => (           
 
@@ -100,6 +96,9 @@ function App() {
                <Switch>
                 <Route exact path="/">
                     <Home user={user} handleLogout={handleLogout} setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText} bestSellerInfo={bestSellerInfo} />
+                </Route>
+                <Route exact path="/bestsellers">
+                    <BestSellers user={user} handleLogout={handleLogout} setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText} bestSellerInfo={bestSellerInfo} />
                 </Route>
                 <Route exact path="/search">
                     <SearchResults user={user} handleLogout={handleLogout} setResults={setResults} results={results} searchText={searchText} setSearchText={setSearchText}/>

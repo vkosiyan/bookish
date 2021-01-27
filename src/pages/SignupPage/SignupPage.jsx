@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
-import { Button, Form, Grid, Header, Image, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Image, Segment, Message } from 'semantic-ui-react'
 import userService from '../../utils/userService';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 
 export default function SignUpPage(props){
@@ -75,8 +75,11 @@ export default function SignUpPage(props){
         <>
         <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
+          <Grid.Row>
+                <Image src={require("./SignUplogo.png")} size='small' centered/> 
+              </Grid.Row>
               <Header as='h2' color='teal' textAlign='center'>
-                <Image src='/signinlogo.png' /> Sign Up    
+               Sign Up    
               </Header>            
                 <Form autoComplete="off"  onSubmit={handleSubmit}>
                 <Segment stacked>               
@@ -131,6 +134,9 @@ export default function SignUpPage(props){
                   </Segment>
                   {error ? <ErrorMessage error={error} /> : null}
                 </Form>
+                <Message>
+              Have an account? <Link to='/login'>Log In</Link>
+            </Message>
                
             </Grid.Column>
           </Grid>

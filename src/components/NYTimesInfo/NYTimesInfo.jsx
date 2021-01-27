@@ -1,13 +1,10 @@
-import React, { useLayoutEffect } from 'react';
+import React from 'react';
 import { Container, Image, Card, Header } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 
 function NYTimesInfo({ bestSellerInfo }) {  
 
-  useLayoutEffect(() => {
-
-  }, {})
 
   return (
     <div>

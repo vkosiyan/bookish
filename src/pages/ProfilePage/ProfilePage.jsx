@@ -9,7 +9,6 @@ import PageFooter from '../../components/Footer/Footer';
 export default function ProfilePage({ user, handleLogout, setResults, results, searchText, setSearchText}) {
 
     const [profileUser, setProfileUser] = useState({})
-    const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
 
     const location = useLocation()
@@ -25,7 +24,6 @@ export default function ProfilePage({ user, handleLogout, setResults, results, s
             console.log(username)
             const data = await userService.getProfile(username);
             console.log(data)
-            setLoading(() => false)
             setProfileUser(() => data.user)
             console.log('DATA', data)
         } catch (err) {
@@ -39,7 +37,7 @@ export default function ProfilePage({ user, handleLogout, setResults, results, s
 
     useEffect(() => {
         getProfile()
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     
 

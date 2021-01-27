@@ -77,7 +77,7 @@ function App() {
       }
       
       makeApiCall()       
-  
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
 
@@ -108,7 +108,7 @@ function App() {
                 </Route>                            
                 <Route path="/books/:bookid"
             render={(routerProps) => (
-              <BookInfo {...routerProps} user={user} handleLogout={handleLogout} searchText={searchText} setSearchText={setSearchText} user={user} currentBook={currentBook} setCurrentBook={setCurrentBook} setResults={setResults} results={results} />
+              <BookInfo {...routerProps} user={user} handleLogout={handleLogout} searchText={searchText} setSearchText={setSearchText} currentBook={currentBook} setCurrentBook={setCurrentBook} setResults={setResults} results={results} />
             )}
           />
           </Switch>

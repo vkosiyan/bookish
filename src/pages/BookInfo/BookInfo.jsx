@@ -70,7 +70,7 @@ function Book(props){
     }
     makeApiCall()
     
-
+// eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
   
 
